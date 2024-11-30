@@ -1,18 +1,32 @@
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, HTTPException, status
 import uvicorn
-from settings.secret import authentication
-from settings.database import engine
-from sqlalchemy import metadata
-from alembic.env import target_metadata
-from harlequelrah_fastapi.appuser import app_user
-from harlequelrah_fastapi.middleware import log_middleware
+from settings.database import engine, authentication
+from settings import logger_model
+from todolistapp import model
+from sqlalchemy import MetaData
+from userapp import user_model
+from userapp.app_user import app_user
+from harlequelrah_fastapi.authentication.authenticate import Authentication
+from harlequelrah_fastapi.middleware.error_middleware import ErrorHandlingMiddleware
+from harlequelrah_fastapi.middleware.log_middleware import LoggerMiddleware
 from todolistapp.route import app_todolist
+
 app = FastAPI()
+target_metadata = MetaData()
+target_metadata = model.Base.metadata
+target_metadata = logger_model.Base.metadata
+target_metadata = user_model.Base.metadata
 target_metadata.create_all(bind=engine)
+
+
+
+
+
 app.include_router(app_user)
 app.include_router(app_todolist)
-app.add_middleware(log_middleware)
+app.add_middleware(LoggerMiddleware,LoggerMiddlewareModel=logger_model.Logger, db_session=authentication.get_session)
+app.add_middleware(ErrorHandlingMiddleware)
 
 
 if __name__ == "__main__":

@@ -11,18 +11,12 @@ from sqlalchemy import (
 from  settings.database import Base
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
-from harlequelrah_fastapi.middleware.model import LoggerMiddleware
-class Logger(Base,LoggerMiddleware):
-    __tablename__='loggers'
 
 class TodoItem(Base):
-    __tablename___='todoitems'
+    __tablename__='todoitems'
+    id = Column(Integer, primary_key=True)
     email=Column(String(255),index=True,nullable=False)
-    id=Column(Integer,primary_key=True)
     titre=Column(String(50),nullable=False)
-    description=Column(String(100),nullable=True,blank=True)
+    description=Column(String(100),nullable=True)
     date_creation=Column(DateTime,nullable=False,default=func.now())
     date_modification=Column(DateTime,nullable=True,onupdate=func.now())
-
-
-
