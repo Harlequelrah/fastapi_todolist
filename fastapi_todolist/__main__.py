@@ -1,13 +1,12 @@
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, HTTPException, status
 import uvicorn
-from settings.database import engine, authentication
+from settings.database import engine, authentication,sessionLocal
 from settings import logger_model
 from todolistapp import model
 from sqlalchemy import MetaData
 from userapp import user_model
 from userapp.app_user import app_user
-from harlequelrah_fastapi.authentication.authenticate import Authentication
 from harlequelrah_fastapi.middleware.error_middleware import ErrorHandlingMiddleware
 from harlequelrah_fastapi.middleware.log_middleware import LoggerMiddleware
 from todolistapp.route import app_todolist
@@ -18,7 +17,6 @@ target_metadata = model.Base.metadata
 target_metadata = logger_model.Base.metadata
 target_metadata = user_model.Base.metadata
 target_metadata.create_all(bind=engine)
-
 
 
 

@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
 from .secret import authentication
 
 SQLALCHEMY_DATABASE_URL = (
@@ -18,4 +17,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
 authentication.set_db_session(session_factory=sessionLocal)

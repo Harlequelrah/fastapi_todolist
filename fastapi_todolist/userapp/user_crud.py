@@ -4,8 +4,7 @@ from fastapi import HTTPException as HE, Response, status, Depends
 from settings.database  import authentication
 from sqlalchemy import or_
 from harlequelrah_fastapi.utility.utils import update_entity
-
-User = authentication.User
+User=authentication.User
 UserLoginModel = authentication.User
 UserCreate = authentication.UserCreateModel
 UserUpdate = authentication.UserUpdateModel
@@ -22,7 +21,7 @@ async def is_unique(sub: str, db:Session=dependencies[0]):
 async def create_user(
     user: UserCreate,
     db: Session = dependencies[0],
-    access_token: str = dependencies[1],
+    # access_token: str = dependencies[1],
 ):
     new_user = User(**user.dict())
     if not is_unique(db, new_user.email) or not is_unique(db, new_user.username):
