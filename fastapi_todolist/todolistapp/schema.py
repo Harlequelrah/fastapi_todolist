@@ -28,4 +28,4 @@ class TodoItemUpdate(TodoItemBase):
 class TodoItem(TodoItemCreate):
     id: int
     date_creation: datetime
-    date_modification: datetime
+    date_modification: Optional[datetime]=None

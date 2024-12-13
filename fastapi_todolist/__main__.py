@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, HTTPException, status
 import uvicorn
-from settings.database import engine, authentication,sessionLocal
+from settings.database import engine, authentication, sessionLocal
 from settings import logger_model
 from todolistapp import model
 from sqlalchemy import MetaData
@@ -19,11 +19,13 @@ target_metadata = user_model.Base.metadata
 target_metadata.create_all(bind=engine)
 
 
-
-
 app.include_router(app_user)
 app.include_router(app_todolist)
-app.add_middleware(LoggerMiddleware,LoggerMiddlewareModel=logger_model.Logger, db_session=authentication.get_session)
+app.add_middleware(
+    LoggerMiddleware,
+    LoggerMiddlewareModel=logger_model.Logger,
+    db_session=authentication.get_session,
+)
 app.add_middleware(ErrorHandlingMiddleware)
 
 
