@@ -21,12 +21,12 @@ target_metadata.create_all(bind=engine)
 
 app.include_router(app_user)
 app.include_router(app_todolist)
+app.add_middleware(ErrorHandlingMiddleware)
 app.add_middleware(
     LoggerMiddleware,
     LoggerMiddlewareModel=logger_model.Logger,
     db_session=authentication.get_session,
 )
-app.add_middleware(ErrorHandlingMiddleware)
 
 
 if __name__ == "__main__":
