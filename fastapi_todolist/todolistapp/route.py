@@ -31,11 +31,11 @@ async def create_todo(todoitem: TodoItemCreate, db: Session = dependencies[0]):
 
 @app_todolist.put("/update-todoitem/{todoitem_id}", response_model=TodoItem)
 async def update_todoitem(
-    todoitem_id: int, todoitem: TodoItemUpdate, db: Session = dependencies[0]
+    todoitem_id: int, todoitem: TodoItemUpdate, db: Session = dependencies[0],access_token:str=dependencies[1]
 ):
     return await crud.update_todoitem(db,todoitem_id, todoitem)
 
 
 @app_todolist.delete("/delete-todoitem/{todoitem_id}")
-async def delete_todoitem(todoitem_id: int, db: Session = dependencies[0]):
-    return await crud.delete_todoitem(db,todoitem_id)
+async def delete_todoitem(todoitem_id: int, db: Session = dependencies[0],access_token:str=dependencies[1]):
+    return await crud.delete_todoitem(db=db,todoitem_id=todoitem_id)

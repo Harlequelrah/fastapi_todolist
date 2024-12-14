@@ -33,7 +33,7 @@ async def get_all_todoitems(
 async def delete_todoitem(db: Session ,
     todoitem_id: int
 ):
-    todoitem = get_todoitem(todoitem_id, db)
+    todoitem = await get_todoitem(db, todoitem_id)
     if todoitem is not None:
         db.delete(todoitem)
         db.commit()
@@ -47,7 +47,7 @@ async def update_todoitem(
     todoitem_id: int,
     todoitem_update: TodoItemUpdate,
 ):
-    todoitem = await get_todoitem(todoitem_id, db)
+    todoitem = await get_todoitem(db,todoitem_id)
     if todoitem is not None:
         update_entity(todoitem, todoitem_update)
         db.commit()
