@@ -6,11 +6,10 @@ from fastapi import APIRouter, Depends
 import userapp.user_crud as crud
 from settings.database import authentication
 from sqlalchemy.orm import Session
-
-# import harlequelrah_fastapi.user.userapp.user_crud as crud
 from typing import List
 from settings.database import authentication
 from harlequelrah_fastapi.authentication.authenticate import AUTHENTICATION_EXCEPTION
+from harlequelrah_fastapi.user.userCrud import UserCrud
 
 app_user = APIRouter(
     prefix="/users",
@@ -27,38 +26,39 @@ UserPydanticModel = authentication.UserPydanticModel
 UserLoginModel = authentication.UserLoginModel
 
 
+usercrud=  UserCrud (authentication)
 @app_user.get("/count-users")
 async def count_users(db:Session=dependencies[0]):
-    return await crud.get_count_users(db)
+    return await usercrud.get_count_users(db)
 
 
 @app_user.get("/get-user/{credential}", response_model=UserPydanticModel)
 async def get_user(credential: str, db: Session = dependencies[0]):
     if credential.isdigit():
-        return await crud.get_user(db,id=credential)
-    return await crud.get_user(db,sub=credential)
+        return await usercrud.get_user(db,credential)
+    return await usercrud.get_user(db,sub=credential)
 
 
 @app_user.get("/get-users", response_model=List[UserPydanticModel])
 async def get_users(db: Session = dependencies[0]):
-    return await crud.get_users(db)
+    return await usercrud.get_users(db)
 
 
 @app_user.post("/create-user", response_model=UserPydanticModel)
 async def create_user(user: UserCreateModel, db: Session = dependencies[0]):
-    return await crud.create_user(user, db)
+        return await usercrud.create_user(user=user,db=db)
 
 
 @app_user.delete("/delete-user/{id}")
 async def delete_user(
     id: int, db: Session = dependencies[0], access_token=dependencies[1]
 ):
-    return await crud.delete_user(id,db)
+    return await usercrud.delete_user(id,db)
 
 
 @app_user.put("/update-user/{id}", response_model=UserPydanticModel)
 async def update_user(user: UserUpdateModel, id: int, db: Session = dependencies[0],access_token=dependencies[1]):
-    return await crud.update_user(db,id, user)
+    return await usercrud.update_user(id,user, db)
 
 
 @app_user.get("/current-user", response_model=UserPydanticModel)
