@@ -29,3 +29,6 @@ class TodoItem(TodoItemCreate):
     id: int
     date_creation: datetime
     date_modification: Optional[datetime]=None
+
+    class setting:
+        from_orm=True
