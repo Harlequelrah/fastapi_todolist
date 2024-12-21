@@ -28,37 +28,37 @@ UserLoginModel = authentication.UserLoginModel
 
 usercrud=  UserCrud (authentication)
 @app_user.get("/count-users")
-async def count_users(db:Session=dependencies[0]):
-    return await usercrud.get_count_users(db)
+async def count_users():
+    return await usercrud.get_count_users()
 
 
 @app_user.get("/get-user/{credential}", response_model=UserPydanticModel)
-async def get_user(credential: str, db: Session = dependencies[0]):
+async def get_user(credential: str):
     if credential.isdigit():
-        return await usercrud.get_user(db,credential)
-    return await usercrud.get_user(db,sub=credential)
+        return await usercrud.get_user(id=credential)
+    return await usercrud.get_user(sub=credential)
 
 
 @app_user.get("/get-users", response_model=List[UserPydanticModel])
-async def get_users(db: Session = dependencies[0]):
-    return await usercrud.get_users(db)
+async def get_users(skip:int=0,limit:int=None):
+    return await usercrud.get_users(skip=skip,limit=limit)
 
 
 @app_user.post("/create-user", response_model=UserPydanticModel)
-async def create_user(user: UserCreateModel, db: Session = dependencies[0]):
-        return await usercrud.create_user(user=user,db=db)
+async def create_user(user: UserCreateModel):
+        return await usercrud.create_user(user=user)
 
 
 @app_user.delete("/delete-user/{id}")
 async def delete_user(
-    id: int, db: Session = dependencies[0], access_token=dependencies[1]
+    id: int , access_token=dependencies[1]
 ):
-    return await usercrud.delete_user(id,db)
+    return await usercrud.delete_user(id)
 
 
 @app_user.put("/update-user/{id}", response_model=UserPydanticModel)
-async def update_user(user: UserUpdateModel, id: int, db: Session = dependencies[0],access_token=dependencies[1]):
-    return await usercrud.update_user(id,user, db)
+async def update_user(user: UserUpdateModel, id: int,access_token=dependencies[1]):
+    return await usercrud.update_user(id,user)
 
 
 @app_user.get("/current-user", response_model=UserPydanticModel)

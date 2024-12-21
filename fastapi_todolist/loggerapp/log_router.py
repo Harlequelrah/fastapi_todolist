@@ -15,4 +15,4 @@ async def get_log(log_id:int):
 
 @app_logger.get('/get-logs')
 async def get_logs(skip: int = 0, limit: int = None):
-    return await logCrud.get_logs()
+    return await logCrud.get_logs(skip=skip, limit=limit)
