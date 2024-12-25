@@ -1,8 +1,8 @@
 from fastapi.responses import JSONResponse
 from sqlalchemy.sql import func
 from fastapi import HTTPException, status, Depends, Response
-from todolistapp.model import TodoItem
-from todolistapp.schema import TodoItemCreate, TodoItemUpdate
+from fastapi_todolist.todolistapp.model import TodoItem
+from fastapi_todolist.todolistapp.schema import TodoItemCreate, TodoItemUpdate
 from sqlalchemy.orm import Session
 from harlequelrah_fastapi.utility.utils import update_entity
 

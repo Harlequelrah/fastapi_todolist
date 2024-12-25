@@ -1,4 +1,4 @@
-from settings.database import Base, authentication
+from fastapi_todolist.settings.database import Base, authentication
 from harlequelrah_fastapi.user import models
 
 

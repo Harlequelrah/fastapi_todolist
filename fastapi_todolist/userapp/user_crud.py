@@ -2,7 +2,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import Session
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException as HE, Response, status, Depends
-from settings.database import authentication
+from fastapi_todolist.settings.database import authentication
 from sqlalchemy import or_
 from harlequelrah_fastapi.utility.utils import update_entity
 
@@ -10,7 +10,6 @@ User = authentication.User
 UserLoginModel = authentication.User
 UserCreate = authentication.UserCreateModel
 UserUpdate = authentication.UserUpdateModel
-
 
 
 async def get_count_users(db: Session):

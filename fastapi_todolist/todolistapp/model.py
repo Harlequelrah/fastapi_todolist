@@ -8,7 +8,7 @@ from sqlalchemy import (
     ForeignKey,
     Table,
 )
-from settings.database import Base
+from fastapi_todolist.settings.database import Base
 
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship

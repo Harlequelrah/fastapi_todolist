@@ -1,7 +1,7 @@
-from todolistapp import model
+from fastapi_todolist.todolistapp import model
 from sqlalchemy import MetaData
-from userapp import user_model
-from settings import logger_model
+from fastapi_todolist.userapp import user_model
+from fastapi_todolist.settings import logger_model
 
 
 target_metadata = MetaData()

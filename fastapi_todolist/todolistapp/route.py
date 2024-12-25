@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
-from todolistapp.schema import *
-from settings.database import get_db
-from settings.secret import authentication
-import todolistapp.crud as crud
-import todolistapp.model as model
+from fastapi_todolist.todolistapp.schema import *
+from fastapi_todolist.settings.database import get_db
+from fastapi_todolist.settings.secret import authentication
+import fastapi_todolist.todolistapp.crud as crud
+import fastapi_todolist.todolistapp.model as model
 from fastapi import Depends, APIRouter
 from typing import List
 

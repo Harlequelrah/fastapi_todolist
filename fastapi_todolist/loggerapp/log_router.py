@@ -1,5 +1,6 @@
 from fastapi import APIRouter
-from loggerapp.log_crud import logCrud
+from fastapi_todolist.loggerapp.log_crud import logCrud
+
 app_logger=APIRouter(
     tags=['logs'],prefix='/logs'
 )
