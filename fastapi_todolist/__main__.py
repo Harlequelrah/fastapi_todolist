@@ -28,6 +28,3 @@ app.add_middleware(
     LoggerMiddlewareModel=logger_model.Logger,
     session_factory=authentication.session_factory,
 )
-
-if __name__ == "__main__":
-    uvicorn.run("__main__:app", host="0.0.0.0", port=8000, reload=True)
