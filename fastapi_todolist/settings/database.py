@@ -3,6 +3,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from .secret import authentication
 import os
+
+print("Variables d'environnement disponibles :")
+for key, value in os.environ.items():
+    print(f"{key}: {value}")
 SQLALCHEMY_DATABASE_URL = os.getenv("MYSQL_CONNECTOR_PUBLIC_URL")
 # Vérifier si la variable est bien définie
 if not SQLALCHEMY_DATABASE_URL:
