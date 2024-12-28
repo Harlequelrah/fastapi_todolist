@@ -18,6 +18,16 @@ target_metadata.create_all(bind=engine)
 app.include_router(app_user)
 app.include_router(app_todolist)
 app.include_router(app_logger)
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permet les requêtes depuis toutes les origines.
+    allow_credentials=True,
+    allow_methods=["*"],  # Autorise toutes les méthodes HTTP.
+    allow_headers=["*"],  # Autorise tous les en-têtes nécessaires.
+)
+
 app.add_middleware(
     ErrorHandlingMiddleware,
     LoggerMiddlewareModel=logger_model.Logger,
