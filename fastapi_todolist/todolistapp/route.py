@@ -6,12 +6,24 @@ from fastapi_todolist.todolistapp.crud import todo_crud
 import fastapi_todolist.todolistapp.model as model
 from fastapi import Depends, APIRouter
 from typing import List
-from harlequelrah_fastapi.router.router_provider import provide_router
-app_todolist=  provide_router(
-    prefix='/todoitem',
+from harlequelrah_fastapi.router.router_provider import provide_router,ProvideRouter
+
+provide_router= ProvideRouter(
+    prefix="/todoitem",
     tags=["todo"],
     PydanticModel=TodoItem,
     crud=todo_crud,
-    authentication=authentication
+    authentication=authentication,
 )
-
+provide_router.initialize_router(
+    {
+        'create':True,
+        'update':True,
+        'count':True,
+        'read-one':True,
+        'read-all':True,
+        'read-all-by-filter':True,
+        'delete':True
+    }
+)
+app_todolist=provide_router.router
