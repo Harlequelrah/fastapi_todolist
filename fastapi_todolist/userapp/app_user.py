@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from fastapi_todolist.settings.database import authentication
 from harlequelrah_fastapi.authentication.authenticate import AUTHENTICATION_EXCEPTION
+from harlequelrah_fastapi.router.route_config import RouteConfig
 from harlequelrah_fastapi.user.userCrud import UserCrud, UserCrudForgery
 from harlequelrah_fastapi.user.userRouter import UserRouterProvider
 
