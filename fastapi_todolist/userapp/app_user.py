@@ -17,4 +17,10 @@ user_router_provider=UserRouterProvider(
         tags=["users"],
         crud=userCrud,
 )
-app_user =  user_router_provider.get_protected_router()
+init_data: List[RouteConfig] = [
+    RouteConfig(route_name="create", is_activated=True),
+    RouteConfig(route_name="read-one", is_activated=True, is_protected=True,is_unlocked=True),
+    RouteConfig(route_name="update", is_activated=True, is_protected=True),
+    RouteConfig(route_name="delete", is_activated=True, is_protected=True),
+]
+app_user =  user_router_provider.initialize_router(init_data)
