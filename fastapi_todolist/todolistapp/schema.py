@@ -13,16 +13,13 @@ class TodoItemBase(BaseModel):
 
 class TodoItemCreate(TodoItemBase):
     titre: str = Field(title="Le titre de la tâche", max_length=100)
-    email: str = Field(title="Adresse email utilisateur ", max_length=100)
 
 
 class TodoItemUpdate(TodoItemBase):
     titre: Optional[str] = Field(
         default=None, title="Le titre de la tâche", max_length=100
     )
-    email: Optional[str] = Field(
-        default=None, title="Adresse email utilisateur ", max_length=100
-    )
+
 
 
 class TodoItem(TodoItemCreate):

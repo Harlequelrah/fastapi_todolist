@@ -17,13 +17,13 @@ router_provider= CustomRouterProvider(
     get_access_token=authentication.get_access_token
 )
 # app_todolist = router_provider.get_default_router()
-# app_todolist = router_provider.get_protected_router()
+app_todolist = router_provider.get_protected_router()
 
-init_data: List[RouteConfig] = [
-    RouteConfig(route_name="create", is_activated=True),
-    RouteConfig(route_name="read-all", is_activated=True,is_protected=True),
-    RouteConfig(route_name="read-one", is_activated=True, is_protected=True),
-    RouteConfig(route_name="update", is_activated=True, is_protected=True),
-    RouteConfig(route_name="delete", is_activated=True, is_protected=True),
-]
-app_todolist= router_provider.initialize_router(init_data=init_data)
+# init_data: List[RouteConfig] = [
+#     RouteConfig(route_name="create", is_activated=True,is_protected=True),
+#     RouteConfig(route_name="read-all", is_activated=True,is_protected=True),
+#     RouteConfig(route_name="read-one", is_activated=True, is_protected=True),
+#     RouteConfig(route_name="update", is_activated=True, is_protected=True),
+#     RouteConfig(route_name="delete", is_activated=True, is_protected=True),
+# ]
+# app_todolist= router_provider.initialize_router(init_data=init_data)

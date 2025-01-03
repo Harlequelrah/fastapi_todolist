@@ -17,7 +17,6 @@ from sqlalchemy.orm import relationship
 class TodoItem(Base):
     __tablename__ = "todoitems"
     id = Column(Integer, primary_key=True)
-    email = Column(String(255), index=True, nullable=False)
     titre = Column(String(50), nullable=False)
     description = Column(String(100), nullable=True)
     date_creation = Column(DateTime, nullable=False, default=func.now())
