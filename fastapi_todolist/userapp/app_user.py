@@ -18,10 +18,13 @@ user_router_provider=UserRouterProvider(
         tags=["users"],
         crud=userCrud,
 )
-init_data: List[RouteConfig] = [
-    RouteConfig(route_name="create", is_activated=True),
-    RouteConfig(route_name="read-one", is_activated=True, is_protected=True,is_unlocked=True),
-    RouteConfig(route_name="update", is_activated=True, is_protected=True),
-    RouteConfig(route_name="delete", is_activated=True, is_protected=True),
-]
-app_user =  user_router_provider.initialize_router(init_data)
+init_data = user_router_provider.USER_AUTH_CONFIG
+create_route=RouteConfig(
+    route_name="create",
+    summary="create user",
+    description= "create a new user",
+    is_activated=True,
+    is_unlocked=True
+)
+custom_init_data : List[RouteConfig] = init_data+[create_route]
+app_user = user_router_provider.initialize_router(init_data=custom_init_data)
