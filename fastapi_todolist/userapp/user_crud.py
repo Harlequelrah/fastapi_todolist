@@ -11,7 +11,6 @@ from fastapi import Response, status
 from harlequelrah_fastapi.user.userCrud import UserCrudForgery
 
 User = authentication.User
-UserLoginModel = authentication.User
 UserCreate = authentication.UserCreateModel
 UserUpdate = authentication.UserUpdateModel
 
