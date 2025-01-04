@@ -8,45 +8,11 @@ from fastapi import Depends
 from fastapi import HTTPException as HE
 from fastapi import Response, status
 
+from harlequelrah_fastapi.user.userCrud import UserCrudForgery
+
 User = authentication.User
 UserLoginModel = authentication.User
 UserCreate = authentication.UserCreateModel
 UserUpdate = authentication.UserUpdateModel
 
-
-async def get_count_users(db: Session):
-    pass
-
-
-async def is_unique(sub: str, db: Session):
-    pass
-
-
-async def create_user(
-    user: UserCreate,
-    db: Session,
-):
-    pass
-
-
-async def get_user(
-    db: Session ,
-    id: int = None,
-    sub: str = None,
-): pass
-
-
-async def get_users(
-    db: Session,
-    skip: int = 0,
-    limit: int = None,
-):pass
-
-async def delete_user(user_id:int,db:Session):
-    pass
-
-async def update_user(
-    db: Session,
-    user_id: int,
-    user: UserUpdate,
-):pass
+userCrud = UserCrudForgery(authentication)

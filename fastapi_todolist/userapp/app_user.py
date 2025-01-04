@@ -1,30 +1,20 @@
-from sqlalchemy.orm import Session
-from fastapi import Depends, HTTPException, status
-from harlequelrah_fastapi.authentication.token import Token, AccessToken, RefreshToken
-from fastapi.security import OAuth2PasswordRequestForm
-from fastapi import APIRouter, Depends
-import fastapi_todolist.userapp.user_crud as crud
+
+from fastapi_todolist.userapp.user_crud  import userCrud
 from sqlalchemy.orm import Session
 from typing import List
-from fastapi_todolist.settings.database import authentication
-from harlequelrah_fastapi.authentication.authenticate import AUTHENTICATION_EXCEPTION
 from harlequelrah_fastapi.router.route_config import RouteConfig
-from harlequelrah_fastapi.user.userCrud import UserCrud, UserCrudForgery
+from harlequelrah_fastapi.router.router_crud import get_single_route
+from harlequelrah_fastapi.router.router_namespace import DEFAULTROUTESNAME, USER_AUTH_CONFIG
 from harlequelrah_fastapi.user.userRouter import UserRouterProvider
 
-userCrud= UserCrudForgery(authentication)
+
 user_router_provider=UserRouterProvider(
         prefix="/users",
         tags=["users"],
         crud=userCrud,
 )
-init_data = user_router_provider.USER_AUTH_CONFIG
-create_route=RouteConfig(
-    route_name="create",
-    summary="create user",
-    description= "create a new user",
-    is_activated=True,
-    is_unlocked=True
-)
-custom_init_data : List[RouteConfig] = init_data+[create_route]
-app_user = user_router_provider.initialize_router(init_data=custom_init_data)
+app_user=user_router_provider.get_mixed_router(init_data=USER_AUTH_CONFIG,public_routes_name=[DEFAULTROUTESNAME.CREATE],protected_routes_name=[DEFAULTROUTESNAME.READ_ALL_BY_FILTER])
+# create_route= get_single_route(DEFAULTROUTESNAME.CREATE)
+# read_by_filter_route = get_single_route(DEFAULTROUTESNAME.READ_ALL_BY_FILTER,'protected')
+# custom_init_data : List[RouteConfig] = USER_AUTH_CONFIG + [create_route,read_by_filter_route]
+# app_user = user_router_provider.initialize_router(init_data=custom_init_data)

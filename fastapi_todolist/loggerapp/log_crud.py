@@ -1,7 +1,9 @@
-from harlequelrah_fastapi.middleware.logCrud import LoggerCrud
+from harlequelrah_fastapi.crud.crud_model import CrudForgery
 from fastapi_todolist.settings.secret import authentication
-
-# from loggerapp.log_model import Logger
 from fastapi_todolist.settings.logger_model import Logger
 
-logCrud= LoggerCrud(session_factory=authentication.session_factory,LoggerModel=Logger)
+logCrud = CrudForgery(
+    entity_name="log",
+    session_factory=authentication.session_factory,
+    SQLAlchemyModel=Logger,
+)
