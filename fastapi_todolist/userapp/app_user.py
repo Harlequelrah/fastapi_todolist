@@ -5,7 +5,7 @@ from typing import List
 from harlequelrah_fastapi.router.route_config import RouteConfig
 from harlequelrah_fastapi.router.router_crud import get_single_route
 from harlequelrah_fastapi.router.router_namespace import DEFAULTROUTESNAME,USER_AUTH_CONFIG_ROUTES
-from harlequelrah_fastapi.user.userRouter import UserRouterProvider
+from harlequelrah_fastapi.router.user_router_provider import UserRouterProvider
 
 
 user_router_provider=UserRouterProvider(
