@@ -16,8 +16,7 @@ class TodoItemCreate(TodoItemBase):
 
 
 class TodoItemUpdate(TodoItemBase):
-    titre: str = Field(
-        default=None, title="Le titre de la tâche", max_length=100
+    titre: str = Field( title="Le titre de la tâche", max_length=100
     )
 
 
