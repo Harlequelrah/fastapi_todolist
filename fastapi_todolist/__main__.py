@@ -40,6 +40,7 @@ app.add_middleware(
     LoggerMiddleware,
     LoggerMiddlewareModel=logger_model.Logger,
     session_factory=authentication.session_factory,
+    manager=manager
 )
 
 
