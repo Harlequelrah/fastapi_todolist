@@ -24,4 +24,4 @@ def get_db():
         db.close()
 
 
-authentication.set_session_factory(session_factory=sessionLocal)
+authentication.session_factory=sessionLocal
