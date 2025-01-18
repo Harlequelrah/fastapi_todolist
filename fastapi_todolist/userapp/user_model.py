@@ -5,7 +5,6 @@ from harlequelrah_fastapi.user import models
 from sqlalchemy.orm import relationship
 from harlequelrah_fastapi.authorization.role_model import RoleModel
 from harlequelrah_fastapi.authorization.privilege_model import PrivilegeModel
-from sqlalchemy.orm import relationship
 
 
 class Privilege(PrivilegeModel,Base):
@@ -32,30 +31,16 @@ role_privileges = Table(
 )
 
 
-class UserPrivilege(Base):
+class UserPrivilege(models.UserPrivilege):
     __tablename__ = "user_privileges"
-    user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
-    privilege_id = Column(Integer, ForeignKey("privileges.id"), primary_key=True)
     user = relationship("User", back_populates="privileges")
     privilege = relationship("Privilege", back_populates="users")
-    is_active=Column(Boolean,default=True)
 
 
 class User(Base, models.User):
     __tablename__ = "users"
-    role_id=Column(Integer, ForeignKey("roles.id"))
     role = relationship("Role", back_populates="users")
-    privileges = relationship("UserPrivilege",back_populates="user")
-
-    def has_role(self,role_name:str):
-        if role_name.upper() == self.role.normalizedName : return True
-        else :raise INSUFICIENT_PERMISSIONS_CUSTOM_HTTP_EXCEPTION
-
-    def has_privilege(self,privilege_name:str):
-        for privilege in self.privileges :
-            if privilege.normalizedName == privilege_name.upper() :
-                return True
-        else : raise INSUFICIENT_PERMISSIONS_CUSTOM_HTTP_EXCEPTION
+    privileges = relationship("UserPrivilege", back_populates="user")
 
 
 authentication.User = User
