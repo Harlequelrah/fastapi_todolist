@@ -19,7 +19,6 @@ role_router_provider = CustomRouterProvider(
     tags=["roles"],
     PydanticModel=RolePydanticModel,
     crud=roleCrud,
-    get_access_token=authentication.get_access_token,
 )
 
 privilege_router_provider = CustomRouterProvider(
@@ -27,7 +26,6 @@ privilege_router_provider = CustomRouterProvider(
     tags=["privileges"],
     PydanticModel=PrivilegePydanticModel,
     crud=privilegeCrud,
-    get_access_token=authentication.get_access_token,
 )
 
 

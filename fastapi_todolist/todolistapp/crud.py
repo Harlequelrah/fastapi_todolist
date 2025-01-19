@@ -10,7 +10,7 @@ from fastapi_todolist.settings.database import authentication
 
 todo_crud = CrudForgery(
     entity_name="todo",
-    session_factory=authentication.session_factory,
+    authentication=authentication,
     SQLAlchemyModel=TodoItem,
     CreatePydanticModel=TodoItemCreate,
     UpdatePydanticModel=TodoItemUpdate,

@@ -1,5 +1,5 @@
 from harlequelrah_fastapi.user import models
-# from myproject.settings import authentication
+from fastapi_todolist.settings import authentication
 class UserBaseModel(models.UserBaseModel):
     pass
 

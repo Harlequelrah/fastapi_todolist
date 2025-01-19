@@ -15,8 +15,11 @@ user_router_provider = UserRouterProvider(
     tags=["users"],
     crud=userCrud,
 )
+count=get_single_route(DefaultRoutesName.COUNT)
+count.role="CAN_COUNT_USERS"
+print("count role",count.role)
 app_user = user_router_provider.get_mixed_router(
-    init_data=USER_AUTH_CONFIG_ROUTES,
+    init_data=USER_AUTH_CONFIG_ROUTES+[count],
     public_routes_name=[DefaultRoutesName.CREATE],
     protected_routes_name=[
         DefaultRoutesName.READ_ALL_BY_FILTER,

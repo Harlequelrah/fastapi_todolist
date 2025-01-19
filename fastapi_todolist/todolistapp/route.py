@@ -14,7 +14,6 @@ router_provider= CustomRouterProvider(
     tags=["todo"],
     PydanticModel=TodoItem,
     crud=todo_crud,
-    get_access_token=authentication.get_access_token
 )
 app_todolist = router_provider.get_protected_router()
 

@@ -1,7 +1,7 @@
 from fastapi_todolist.settings.database import Base, authentication
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, Table
 from harlequelrah_fastapi.exception.auth_exception import INSUFICIENT_PERMISSIONS_CUSTOM_HTTP_EXCEPTION
-from harlequelrah_fastapi.user import models
+from harlequelrah_fastapi.user.models import UserModel,UserPrivilegeModel
 from sqlalchemy.orm import relationship
 from harlequelrah_fastapi.authorization.role_model import RoleModel
 from harlequelrah_fastapi.authorization.privilege_model import PrivilegeModel
@@ -12,7 +12,7 @@ class Privilege(PrivilegeModel,Base):
     roles = relationship(
         "Role", secondary="role_privileges", back_populates="privileges"
     )
-    users = relationship("UserPrivilege", back_populates="privilege")
+    privilege_users = relationship("UserPrivilege", back_populates="privilege")
 
 
 class Role(RoleModel,Base):
@@ -30,17 +30,17 @@ role_privileges = Table(
     Column("privilege_id", Integer, ForeignKey("privileges.id")),
 )
 
-
-class UserPrivilege(models.UserPrivilege):
-    __tablename__ = "user_privileges"
-    user = relationship("User", back_populates="privileges")
-    privilege = relationship("Privilege", back_populates="users")
-
-
-class User(Base, models.User):
+class User( UserModel,Base):
     __tablename__ = "users"
     role = relationship("Role", back_populates="users")
-    privileges = relationship("UserPrivilege", back_populates="user")
+    user_privileges = relationship("UserPrivilege", back_populates="user")
+class UserPrivilege(UserPrivilegeModel,Base):
+    __tablename__ = "user_privileges"
+    user = relationship("User", back_populates="user_privileges",lazy="joined")
+    privilege = relationship("Privilege", back_populates="privilege_users",lazy="joined")
+
+
+
 
 
 authentication.User = User
