@@ -16,7 +16,7 @@ user_router_provider = UserRouterProvider(
     tags=["users"],
     crud=userCrud,
 )
-custom_init_data = USER_AUTH_CONFIG_ROUTES + exclude_route(ROUTES_PROTECTED_CONFIG,[DefaultRoutesName.CREATE,DefaultRoutesName])
+custom_init_data = USER_AUTH_CONFIG_ROUTES + exclude_route(ROUTES_PROTECTED_CONFIG,[DefaultRoutesName.CREATE])
 app_user = user_router_provider.get_mixed_router(
     init_data= custom_init_data ,
     public_routes_name=[DefaultRoutesName.CREATE],

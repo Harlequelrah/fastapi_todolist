@@ -1,4 +1,4 @@
-from harlequelrah_fastapi.crud.crud_forgery import CrudForgery, LinkClass
+from harlequelrah_fastapi.crud.crud_forgery import CrudForgery
 from fastapi_todolist.settings.database import authentication
 from harlequelrah_fastapi.authorization.privilege_model import (
     PrivilegeCreateModel,
@@ -8,6 +8,7 @@ from harlequelrah_fastapi.authorization.role_model import (
     RoleCreateModel,
     RoleUpdateModel,
 )
+from harlequelrah_fastapi.crud.link_class import LinkClass
 from .user_model import Privilege, Role , UserPrivilege
 from harlequelrah_fastapi.user.models import UserPrivilegeCreateModel,UserPrivilegeUpdateModel
 
