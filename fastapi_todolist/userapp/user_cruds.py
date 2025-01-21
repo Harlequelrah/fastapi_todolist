@@ -1,3 +1,5 @@
+from fastapi_todolist.settings.database import authentication
+from harlequelrah_fastapi.authorization.role_privilege_model import RolePrivilegeCreateModel, RolePrivilegeUpdateModel
 from harlequelrah_fastapi.crud.crud_forgery import CrudForgery
 from fastapi_todolist.settings.database import authentication
 from harlequelrah_fastapi.authorization.privilege_model import (
@@ -9,8 +11,13 @@ from harlequelrah_fastapi.authorization.role_model import (
     RoleUpdateModel,
 )
 from harlequelrah_fastapi.crud.link_class import LinkClass
-from .user_model import Privilege, Role , UserPrivilege
+from .user_models import Privilege, Role, RolePrivilege , UserPrivilege
 from harlequelrah_fastapi.user.models import UserPrivilegeCreateModel,UserPrivilegeUpdateModel
+from harlequelrah_fastapi.crud.user_crud_forgery import UserCrudForgery
+
+
+
+userCrud = UserCrudForgery(authentication)
 
 roleCrud = CrudForgery(
     entity_name="role",
@@ -38,4 +45,11 @@ userPrivilegeCrud=CrudForgery(
     UpdatePydanticModel= UserPrivilegeUpdateModel
 )
 
+rolePrivilegeCrud=CrudForgery(
+    entity_name='role_privilege',
+    authentication=authentication,
+    SQLAlchemyModel=RolePrivilege,
+    CreatePydanticModel=RolePrivilegeCreateModel,
+    UpdatePydanticModel= RolePrivilegeUpdateModel
 
+)

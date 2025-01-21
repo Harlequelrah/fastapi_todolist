@@ -1,1 +1,1 @@
-from .user_model import metadata
+from .user_models import metadata

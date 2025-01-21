@@ -1,14 +1,25 @@
-from fastapi_todolist.settings.database import authentication
+
+
+from harlequelrah_fastapi.router.user_router_provider import UserRouterProvider
 from harlequelrah_fastapi.authorization.privilege_model import (
     PrivilegePydanticModel,
 )
 from harlequelrah_fastapi.authorization.role_model import (
     RolePydanticModel,
 )
+from harlequelrah_fastapi.authorization.role_privilege_model import RolePrivilegePydanticModel
 from harlequelrah_fastapi.router.router_provider import CustomRouterProvider
 from harlequelrah_fastapi.user.models import UserPrivilegePydanticModel
 
-from .authorization_crud import privilegeCrud, roleCrud , userPrivilegeCrud
+from .user_cruds import privilegeCrud, roleCrud , userPrivilegeCrud , userCrud
+
+
+
+user_router_provider = UserRouterProvider(
+    prefix="/users",
+    tags=["users"],
+    crud=userCrud,
+)
 
 
 role_router_provider = CustomRouterProvider(
@@ -24,6 +35,7 @@ privilege_router_provider = CustomRouterProvider(
     PydanticModel=PrivilegePydanticModel,
     crud=privilegeCrud,
 )
+
 user_privilege_router_provider=CustomRouterProvider(
     prefix='/users/privileges',
     tags=["users","privileges"],
@@ -31,6 +43,9 @@ user_privilege_router_provider=CustomRouterProvider(
     crud=userPrivilegeCrud
 )
 
-app_role = role_router_provider.get_protected_router()
-app_privilege = privilege_router_provider.get_protected_router()
-app_user_privilege=user_privilege_router_provider.get_protected_router()
+role_privilege_router_provider=CustomRouterProvider(
+    prefix='/roles/privileges',
+    tags=["roles","privileges"],
+    PydanticModel=RolePrivilegePydanticModel,
+    crud=userPrivilegeCrud
+)

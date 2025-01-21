@@ -1,24 +1,19 @@
-from sqlalchemy.orm import Session
 from fastapi import (
     FastAPI,
-    Depends,
-    HTTPException,
     WebSocketDisconnect,
-    status,
     WebSocket,
 )
-import uvicorn
-from fastapi_todolist.settings.database import engine, authentication, sessionLocal
+
+from fastapi_todolist.settings.database import engine, authentication
 from fastapi_todolist.settings import logger_model
 from fastapi_todolist.settings.models_metadata import target_metadata
-from fastapi_todolist.userapp.app_user import app_user
 from fastapi_todolist.loggerapp.log_router import app_logger
-from fastapi_todolist.userapp.authorization_app import app_role,app_privilege,app_user_privilege
+from fastapi_todolist.userapp.user_routers import app_role,app_privilege,app_user_privilege,app_role_privilege,app_user
 from harlequelrah_fastapi.middleware.error_middleware import ErrorHandlingMiddleware
 from harlequelrah_fastapi.middleware.log_middleware import LoggerMiddleware
 from fastapi_todolist.todolistapp.route import app_todolist
 from harlequelrah_fastapi.websocket.connectionManager import ConnectionManager
-from fastapi.responses import JSONResponse
+
 
 app = FastAPI()
 manager = ConnectionManager()
@@ -31,6 +26,7 @@ app.include_router(app_logger)
 app.include_router(app_role)
 app.include_router(app_privilege)
 app.include_router(app_user_privilege)
+app.include_router(app_role_privilege)
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
