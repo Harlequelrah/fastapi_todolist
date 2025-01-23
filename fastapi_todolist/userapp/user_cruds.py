@@ -1,19 +1,19 @@
 from fastapi_todolist.settings.database import authentication
-from harlequelrah_fastapi.authorization.role_privilege_model import RolePrivilegeCreateModel, RolePrivilegeUpdateModel
-from harlequelrah_fastapi.crud.crud_forgery import CrudForgery
+from elrahapi.authorization.role_privilege_model import RolePrivilegeCreateModel, RolePrivilegeUpdateModel
+from elrahapi.crud.crud_forgery import CrudForgery
 from fastapi_todolist.settings.database import authentication
-from harlequelrah_fastapi.authorization.privilege_model import (
+from elrahapi.authorization.privilege_model import (
     PrivilegeCreateModel,
     PrivilegeUpdateModel,
 )
-from harlequelrah_fastapi.authorization.role_model import (
+from elrahapi.authorization.role_model import (
     RoleCreateModel,
     RoleUpdateModel,
 )
-from harlequelrah_fastapi.crud.link_class import LinkClass
+from elrahapi.crud.link_class import LinkClass
 from .user_models import Privilege, Role, RolePrivilege , UserPrivilege
-from harlequelrah_fastapi.user.models import UserPrivilegeCreateModel,UserPrivilegeUpdateModel
-from harlequelrah_fastapi.crud.user_crud_forgery import UserCrudForgery
+from elrahapi.user.models import UserPrivilegeCreateModel,UserPrivilegeUpdateModel
+from elrahapi.crud.user_crud_forgery import UserCrudForgery
 
 
 

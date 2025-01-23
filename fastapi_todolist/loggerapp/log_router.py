@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends
 
-from harlequelrah_fastapi.router.route_config import RouteConfig
-from harlequelrah_fastapi.router.router_namespace import DefaultRoutesName
-from harlequelrah_fastapi.router.router_provider import CustomRouterProvider
+from elrahapi.router.route_config import RouteConfig
+from elrahapi.router.router_namespace import DefaultRoutesName
+from elrahapi.router.router_provider import CustomRouterProvider
 from .log_crud import logCrud
 from fastapi_todolist.settings.database import authentication
 from .log_schema import LoggerMiddlewarePydanticModel as LMPD

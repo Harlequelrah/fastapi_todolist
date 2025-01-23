@@ -1,4 +1,4 @@
-from harlequelrah_fastapi.authentication.authenticate import Authentication
+from elrahapi.authentication.authenticate import Authentication
 import os
 from dotenv import load_dotenv
 

@@ -1,15 +1,15 @@
 
 
-from harlequelrah_fastapi.router.user_router_provider import UserRouterProvider
-from harlequelrah_fastapi.authorization.privilege_model import (
+from elrahapi.router.user_router_provider import UserRouterProvider
+from elrahapi.authorization.privilege_model import (
     PrivilegePydanticModel,
 )
-from harlequelrah_fastapi.authorization.role_model import (
+from elrahapi.authorization.role_model import (
     RolePydanticModel,
 )
-from harlequelrah_fastapi.authorization.role_privilege_model import RolePrivilegePydanticModel
-from harlequelrah_fastapi.router.router_provider import CustomRouterProvider
-from harlequelrah_fastapi.user.models import UserPrivilegePydanticModel
+from elrahapi.authorization.role_privilege_model import RolePrivilegePydanticModel
+from elrahapi.router.router_provider import CustomRouterProvider
+from elrahapi.user.models import UserPrivilegePydanticModel
 
 from .user_cruds import privilegeCrud, roleCrud , userPrivilegeCrud , userCrud
 

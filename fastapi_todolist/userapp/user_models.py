@@ -1,10 +1,10 @@
 from fastapi_todolist.settings.database import Base, authentication
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, Table
-from harlequelrah_fastapi.authorization.role_privilege_model import RolePrivilegeModel
-from harlequelrah_fastapi.user.models import UserModel,UserPrivilegeModel
+from elrahapi.authorization.role_privilege_model import RolePrivilegeModel
+from elrahapi.user.models import UserModel,UserPrivilegeModel
 from sqlalchemy.orm import relationship
-from harlequelrah_fastapi.authorization.role_model import RoleModel
-from harlequelrah_fastapi.authorization.privilege_model import PrivilegeModel
+from elrahapi.authorization.role_model import RoleModel
+from elrahapi.authorization.privilege_model import PrivilegeModel
 
 
 class Privilege(PrivilegeModel,Base):

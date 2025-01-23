@@ -1,7 +1,7 @@
 from fastapi_todolist.userapp.user_cruds import userCrud
 
-from harlequelrah_fastapi.router.router_crud import exclude_route
-from harlequelrah_fastapi.router.router_namespace import (
+from elrahapi.router.router_crud import exclude_route
+from elrahapi.router.router_namespace import (
     ROUTES_PROTECTED_CONFIG,
     DefaultRoutesName,
     USER_AUTH_CONFIG_ROUTES,
