@@ -21,3 +21,4 @@ class TodoItem(Base):
     description = Column(String(100), nullable=True)
     date_creation = Column(DateTime, nullable=False, default=func.now())
     date_modification = Column(DateTime, nullable=True, onupdate=func.now())
+    est_fini=Column(Boolean,default=False)

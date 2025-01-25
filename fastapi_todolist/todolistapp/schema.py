@@ -13,11 +13,13 @@ class TodoItemBase(BaseModel):
 
 class TodoItemCreate(TodoItemBase):
     titre: str = Field(title="Le titre de la tâche", max_length=100)
+    est_fini:Optional[bool]=Field(example=True,default=False)
 
 
 class TodoItemUpdate(TodoItemBase):
-    titre: str = Field( title="Le titre de la tâche", max_length=100
+    titre: str = Field(example="Le titre de la tâche", max_length=100
     )
+    est_fini:Optional[bool]=Field(example=True,default=False)
 
 
 
