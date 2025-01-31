@@ -29,4 +29,4 @@ class TodoItem(TodoItemCreate):
     date_modification: Optional[datetime]=None
 
     class Config:
-        from_orm=True
+        from_attributes=True
