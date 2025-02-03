@@ -10,11 +10,11 @@ from elrahapi.router.route_config import RouteConfig
 from elrahapi.router.router_provider import CustomRouterProvider
 
 router_provider= CustomRouterProvider(
-    prefix="/todoitem",
+    prefix="/todos",
     tags=["todo"],
     PydanticModel=TodoItem,
     crud=todo_crud,
-    roles=["Manager"]
+    # roles=["Manager"]
 )
-app_todolist = router_provider.get_protected_router()
+app_todolist = router_provider.get_public_router()
 
