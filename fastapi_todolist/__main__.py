@@ -58,6 +58,6 @@ async def websocket_notification(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_text()
-            await manager.send_message(data)
+            await manager.broadcast(data)
     except WebSocketDisconnect:
         await manager.disconnect(websocket)
