@@ -12,7 +12,7 @@ from fastapi_todolist.userapp.user_routers import app_role,app_privilege,app_use
 from elrahapi.middleware.error_middleware import ErrorHandlingMiddleware
 from elrahapi.middleware.log_middleware import LoggerMiddleware
 from fastapi_todolist.todolistapp.route import app_todolist
-from elrahapi.websocket.connectionManager import ConnectionManager
+from elrahapi.websocket.connection_manager import ConnectionManager
 
 
 app = FastAPI()
