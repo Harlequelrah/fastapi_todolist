@@ -1,7 +1,7 @@
 from fastapi_todolist.settings.database import Base, authentication
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, Table
 from elrahapi.authorization.role_privilege_model import RolePrivilegeModel
-from elrahapi.user.models import UserModel,UserPrivilegeModel
+from elrahapi.user.model import UserModel,UserPrivilegeModel
 from sqlalchemy.orm import relationship
 from elrahapi.authorization.role_model import RoleModel
 from elrahapi.authorization.privilege_model import PrivilegeModel

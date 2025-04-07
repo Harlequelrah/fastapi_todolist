@@ -9,7 +9,7 @@ from elrahapi.authorization.role_model import (
 )
 from elrahapi.authorization.role_privilege_model import RolePrivilegePydanticModel
 from elrahapi.router.router_provider import CustomRouterProvider
-from elrahapi.user.models import UserPrivilegePydanticModel
+from elrahapi.user.model import UserPrivilegePydanticModel
 
 from .user_cruds import privilegeCrud, roleCrud , userPrivilegeCrud , userCrud
 

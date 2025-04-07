@@ -1,12 +1,12 @@
-from elrahapi.user import models
+from elrahapi.user import model
 from fastapi_todolist.settings import authentication
-class UserBaseModel(models.UserBaseModel):
+class UserBaseModel(model.UserBaseModel):
     pass
 
-class UserCreateModel(models.UserCreateModel):
+class UserCreateModel(model.UserCreateModel):
     pass
 
-class UserUpdateModel(models.UserUpdateModel):
+class UserUpdateModel(model.UserUpdateModel):
     pass
 
 

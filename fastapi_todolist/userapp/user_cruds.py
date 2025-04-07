@@ -12,7 +12,7 @@ from elrahapi.authorization.role_model import (
 )
 from elrahapi.crud.link_class import LinkClass
 from .user_models import Privilege, Role, RolePrivilege , UserPrivilege
-from elrahapi.user.models import UserPrivilegeCreateModel,UserPrivilegeUpdateModel
+from elrahapi.user.model import UserPrivilegeCreateModel,UserPrivilegeUpdateModel
 from elrahapi.crud.user_crud_forgery import UserCrudForgery
 
 
